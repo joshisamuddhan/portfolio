@@ -283,6 +283,9 @@ h1 .accent { color: var(--accent); }
   color: rgba(255,255,255,.8);
   white-space: nowrap;
 }
+@media (max-width: 640px) {
+  .odoo-topbar .fake-search { display: none; }
+}
 .odoo-ctrl {
   display: flex; align-items: center; gap: 10px;
   padding: 10px 18px;
