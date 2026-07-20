@@ -680,17 +680,30 @@ footer .egg .t-green { color: var(--term-green); }
   var done = false;
 
   var CMD = './odoo-bin -d portfolio -i samuddhan_joshi --without-demo=all';
+
+  function pad(n, width) {
+    n = String(n);
+    while (n.length < (width || 2)) n = '0' + n;
+    return n;
+  }
+  var bootTime = new Date();
+  function ts(offsetMs) {
+    var d = new Date(bootTime.getTime() + offsetMs);
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + ' ' +
+      pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()) + ',' + pad(d.getMilliseconds(), 3);
+  }
+
   var LINES = [
-    ['<span class="t-dim">2026-07-17 09:00:01,024 1337</span> <span class="t-green">INFO</span> <span class="t-dim">?</span> odoo: Odoo version <span class="t-amber">19.0</span>', 160],
-    ['<span class="t-dim">2026-07-17 09:00:01,102 1337</span> <span class="t-green">INFO</span> portfolio odoo.modules.loading: loading module <span class="t-plum t-bold">samuddhan_joshi</span> (1/1)', 220],
+    ['<span class="t-dim">' + ts(0) + ' 1337</span> <span class="t-green">INFO</span> <span class="t-dim">?</span> odoo: Odoo version <span class="t-amber">19.0</span>', 160],
+    ['<span class="t-dim">' + ts(78) + ' 1337</span> <span class="t-green">INFO</span> portfolio odoo.modules.loading: loading module <span class="t-plum t-bold">samuddhan_joshi</span> (1/1)', 220],
     ['  loading <span class="t-plum">data/experience.xml</span>        <span class="t-dim">→</span> 3+ years building production ERP', 200],
     ['  loading <span class="t-plum">data/deployments.xml</span>       <span class="t-dim">→</span> 15+ production instances · Odoo 14 → 19', 200],
     ['  loading <span class="t-plum">data/commits.xml</span>           <span class="t-dim">→</span> 700+ commits shipped to production', 200],
     ['  loading <span class="t-plum">security/vapt_findings.xml</span> <span class="t-dim">→</span> 26+ findings remediated · 2 audits cleared', 220],
     ['  loading <span class="t-plum">views/portfolio_views.xml</span>  <span class="t-dim">→</span> government · manufacturing · e-commerce', 220],
-    ['<span class="t-dim">2026-07-17 09:00:03,871 1337</span> <span class="t-green">INFO</span> portfolio odoo.modules.loading: Module <span class="t-plum t-bold">samuddhan_joshi</span> loaded in <span class="t-amber">3.2s</span>', 260],
-    ['<span class="t-dim">2026-07-17 09:00:03,912 1337</span> <span class="t-green">INFO</span> portfolio odoo.modules.registry: Registry loaded. <span class="t-green t-bold">Portfolio ready.</span>', 240],
-    ['<span class="t-dim">2026-07-17 09:00:03,940 1337</span> <span class="t-green">INFO</span> portfolio werkzeug: 127.0.0.1 - "GET /samuddhan HTTP/1.1" <span class="t-green">200</span> <span class="cursor"></span>', 0]
+    ['<span class="t-dim">' + ts(2847) + ' 1337</span> <span class="t-green">INFO</span> portfolio odoo.modules.loading: Module <span class="t-plum t-bold">samuddhan_joshi</span> loaded in <span class="t-amber">3.2s</span>', 260],
+    ['<span class="t-dim">' + ts(2888) + ' 1337</span> <span class="t-green">INFO</span> portfolio odoo.modules.registry: Registry loaded. <span class="t-green t-bold">Portfolio ready.</span>', 240],
+    ['<span class="t-dim">' + ts(2916) + ' 1337</span> <span class="t-green">INFO</span> portfolio werkzeug: 127.0.0.1 - "GET /samuddhan HTTP/1.1" <span class="t-green">200</span> <span class="cursor"></span>', 0]
   ];
 
   function addLine(html) {
